@@ -1,6 +1,11 @@
 import serial,time
 
-baudrate = 172100
+brainy = False
+
+if brainy:
+    baudrate = 115200
+else:
+    baudrate = 172100 
 
 def ecrire(serial,mot) :
     for i in mot:
@@ -13,6 +18,7 @@ def ecrire(serial,mot) :
 with serial.Serial("/dev/tty.usbmodem1103", baudrate, timeout=1) as ser:
     time.sleep(0.1) #wait for serial to open
     if ser.isOpen():
-        ecrire(ser,"cat ./msg_from_st_team. sixel")
+        ecrire(ser,"run adventure\n")
         while 1:
-            print(ser.read(1024).decode().strip())
+            print(ser.read(1024*10).decode().strip())
+        

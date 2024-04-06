@@ -1,7 +1,12 @@
 import serial,time
 
-baudrate = 172100
+brainy = True
 
+if brainy:
+    baudrate = 115200
+else:
+    baudrate = 172100 
+    
 def ecrire(serial,mot) :
     for i in mot:
         serial.flushInput()
@@ -11,16 +16,21 @@ def ecrire(serial,mot) :
         time.sleep(0.1)
 
 
-def envoi_cmd_continu(serial, cmd):
-    ecrire(serial, cmd)
-    while 1:
-        print(serial.read(1024).decode().strip())
-              
+def ouvrirSerial():
+    with serial.Serial("/dev/tty.usbmodem1103", baudrate, timeout=1) as ser:
+        if ser.isOpen():
+            return ser
+
+def fermerSerial(serial):
+    serial.close()
+    
+serial_port = ouvrirSerial()
+
+commandes = ["commande1", "commande2", "commande3"]
+for commande in commandes:
+    ecrire(serial_port, commande)
+    time.sleep(1)
+
+fermerSerial(serial_port)
 
 
-with serial.Serial("/dev/tty.usbmodem1103", baudrate, timeout=1) as ser:
-    time.sleep(0.1) #wait for serial to open
-    if ser.isOpen():
-        ecrire(ser,"cd ..\n")
-        while 1:
-            print(ser.read(1024).decode().strip())
