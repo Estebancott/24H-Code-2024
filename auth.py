@@ -1,6 +1,6 @@
 import serial,time
 
-baudrate = 115200 #152200
+baudrate = 115200
 team = "gpt\n"
 acknowledge = "ack"
 shark = "shark\n"
