@@ -13,7 +13,7 @@ def ecrire(serial,mot) :
         serial.flush() 
         time.sleep(0.1)
 
-with serial.Serial("/dev/tty.usbmodem1103", baudrate, timeout=1) as ser:
+with serial.Serial("COM6", baudrate, timeout=1) as ser:
     time.sleep(0.1) #wait for serial to open
     if ser.isOpen():
         ser.flushInput()
@@ -32,7 +32,7 @@ with serial.Serial("/dev/tty.usbmodem1103", baudrate, timeout=1) as ser:
 
 baudrate = 172100
 
-with serial.Serial("/dev/tty.usbmodem1103", baudrate, timeout=1) as ser:
+with serial.Serial("COM6", baudrate, timeout=1) as ser:
     time.sleep(1.5) #wait for serial to open
     if ser.isOpen():
         ser.flushInput()

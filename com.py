@@ -17,7 +17,7 @@ def ecrire(serial,mot) :
 
 
 def ouvrirSerial():
-    with serial.Serial("/dev/tty.usbmodem1103", baudrate, timeout=1) as ser:
+    with serial.Serial("COM6", baudrate, timeout=1) as ser:
         if ser.isOpen():
             return ser
 
@@ -26,7 +26,7 @@ def fermerSerial(serial):
     
 serial_port = ouvrirSerial()
 
-commandes = ["commande1", "commande2", "commande3"]
+commandes = ["help\n"]
 for commande in commandes:
     ecrire(serial_port, commande)
     time.sleep(1)
