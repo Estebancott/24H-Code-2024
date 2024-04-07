@@ -11,12 +11,12 @@ def ecrire(serial,mot) :
         serial.flush() 
         time.sleep(0.1)
 
-with serial.Serial("COM6", baudrate, timeout=1) as ser:
+with serial.Serial("/dev/tty.usbmodem11103", baudrate, timeout=1) as ser:
     time.sleep(0.1) #wait for serial to open
     if ser.isOpen():
-        #ecrire(ser,"cd drdoom/tools/intervention_gi\n")
+        # ecrire(ser,"cd drdoom/tools/intervention_gi\n")
         #ecrire(ser,"cat settings.txt\n")
-        #ecrire(ser,"run intervention_gi\n")
+        # ecrire(ser,"run intervention_gi\n")
         # ecrire(ser,"brainy\n")
         # ecrire(ser,"\n")
         # time.sleep(1)
